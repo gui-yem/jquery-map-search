@@ -1,137 +1,129 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery Map search demo</title>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>jQuery Map search demo</title>
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+      <link rel="stylesheet" type="text/css" media="screen" href="jquery.map-search.css" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="jquery.map-search.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script src="jquery.map-search.js"></script>
-</head>
-<body>
-
-<div class="container-fluid">
-    <div class="row container-global">
-        <div class="col-md-12">
-            <div class="row">
+      <script src="jquery.map-search.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row container-global">
                 <div class="col-md-12">
-                    <select id="select-marker" name="select-marker">
-                        <option value="">Choose a marker</option>
-                        <option selected value="item1">ITEM 1</option>
-                        <option value="item2">ITEM 2</option>
-                        <option value="item3">ITEM 3</option>
-                        <option value="item4">ITEM 4</option>
-                        <option value="item5">ITEM 5</option>
-                        <option value="item6">ITEM 6</option>
-                        <option value="item7">ITEM 7</option>
-                        <option value="item8">ITEM 8</option>
-                        <option value="item9">ITEM 9</option>
-                        <option value="item10">ITEM 10</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="container-map-search-1" class="container-map-search">
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="hidden" value="items" class="search-node">
-                        <div class="container-map-search-fields">
-                            <input type="text" value="" placeholder="Name" name="name">
-                            <input type="text" value="" placeholder="Town" name="town">
-                            <select name="department">
-                                <option value="">Choose a department</option>
-                                <option value="74">74</option>
-                                <option value="73">74</option>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select id="select-marker" name="select-marker">
+                                <option value="">Choose a marker</option>
+                                <option selected value="item1">ITEM 1</option>
+                                <option value="item2">ITEM 2</option>
+                                <option value="item3">ITEM 3</option>
+                                <option value="item4">ITEM 4</option>
+                                <option value="item5">ITEM 5</option>
+                                <option value="item6">ITEM 6</option>
+                                <option value="item7">ITEM 7</option>
+                                <option value="item8">ITEM 8</option>
+                                <option value="item9">ITEM 9</option>
+                                <option value="item10">ITEM 10</option>
                             </select>
-
-                            <button class="btn btn-map-search">Search</button>
-                            <button class="btn btn-map-init">Init</button>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="map-search"></div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="selected-markers-list">
-                            <ul>
-                                <li data-guid="[id]">
-                                    <h3>[name]</h3>
-                                    <p>
-                                        [tel]<br class="tel">
-                                        [town]<br class="town">
-                                        [address]<br class="address">
-                                        <div class="logo">
-                                            <img class="visible-md visible-lg" src="[logo]&geometry=70x&crop=70x70"/>
-                                        </div>
-                                    </p>
-                                    <button class="btn btn-select-marker" data-guid="[id]">Select</button>
-                                    <button class="btn btn-view-on-map" data-guid="[id]">See on map</button>
-                                </li>
-                            </ul>
+                    <div id="container-map-search-1" class="container-map-search">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" value="items" class="search-node">
+                                <div class="container-map-search-fields">
+                                    <input type="text" value="" placeholder="Name" name="name">
+                                    <input type="text" value="" placeholder="Town" name="town">
+                                    <select name="department">
+                                        <option value="">Choose a department</option>
+                                        <option value="74">74</option>
+                                        <option value="73">73</option>
+                                    </select>
+
+                                    <button class="btn btn-map-search">Search</button>
+                                    <button class="btn btn-map-init">Init</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="checkbox" name="boundsVisibleListItem" value="1" checked> <label>Zoom on visible item list</label>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="map-search"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="selected-markers-list">
+                                    <ul>
+                                        <li data-guid="[id]">
+                                            <h3>[name]</h3>
+                                            <p>
+                                                [tel]<br class="tel">
+                                                [town]<br class="town">
+                                                [address]<br class="address">
+                                                <div class="logo">
+                                                    <img class="visible-md visible-lg" src="[logo]&geometry=70x&crop=70x70"/>
+                                                </div>
+                                            </p>
+                                            <button class="btn btn-select-marker" data-guid="[id]">Select</button>
+                                            <button class="btn btn-view-on-map" data-guid="[id]">See on map</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="checkbox" name="boundsVisibleListItem" value="1" checked> <label>Zoom on visible item list</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <script type="text/javascript">
+            var jsonDatas = {"items":[{"id":"item1","name":"ITEM 1","department":"74","town":"Annecy","lat":45.9203754,"lng":6.1256629730163,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item2","name":"ITEM 2","department":"74","town":"SEYNOD","lat":45.8804816,"lng":6.1024452,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item3","name":"ITEM 3","department":"74","town":"CRUSEILLES","lat":46.0410767,"lng":6.1097486,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item4","name":"ITEM 4","department":"74","town":"CRUSEILLES","lat":46.0265674,"lng":6.1372006,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item5","name":"ITEM 5","department":"73","town":"Chambery","lat":45.5664886,"lng":5.921163,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item6","name":"ITEM 6","department":"74","town":"VETRAZ MONTHOUX","lat":46.1905269,"lng":6.2638828,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item7","name":"ITEM 7","department":"74","town":"Annecy","lat":45.9087768,"lng":6.1291369,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item8","name":"ITEM 8","department":"74","town":"Annemasse","lat":46.1930258,"lng":6.2410076,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item9","name":"ITEM 9","department":"74","town":"VEYRIER DU LAC","lat":45.881707,"lng":6.178,"address":"Adress ...","tel":"0000...","logo":""},{"id":"ITEM 10","name":"ITEM 10","department":"74","town":"ANNECY le VIEUX","lat":45.9248281,"lng":6.1661426000001,"address":"Adress ...","tel":"0000...","logo":""}]};
 
+            jQuery(function($) {
+                $('#container-map-search-1').mapSearch({
+                    mapScript: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAYuyFSt1umjX9JSEpDzvXf6Kq7iPGFB24',
+                    dataSource: jsonDatas,
+                    jsonPrimaryNode: 'items',
+                    itemGuid: 'id',
+                    initMarkersOnSearch: false,
+                    infowindowsMaxWidth: 300,
+                    openInfoWindowOnMarkerSelect: false,
+                    selectMarkerOnListItemHover: false,
+                    boundsVisibleMarkersOnListScroll: true,
+                    animateMarkerOnListScroll: false,
+                    animateMarkerOnListScrollDelay: 50,
+                    mapFitBoundsOnWindowinfoClose: false,
+                    displayOnlyVisibleMarkersOnListScroll: false,
+                    scrollToSelectedItemOnMarkerSelect: true,
+                    keepMarkerSelectedOnListScroll: true,
+                    panToSelectedMarker: true,
+                    selectItemOnMarkerClick: true,
+                    selectMarkerFieldLink: '#select-marker',
+                    defaultMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png',
+                    visibleMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Chartreuse-icon.png',
+                    selectedMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
+                    noresultNotification: 'No result for this search criteria',
+                    infowindowsTemplate: '<div data-guid="[id]"><h3>[name]</h3><p>[tel]<br class="tel">[town]<br class="town">[address]<div class="logo"><img class="visible-md visible-lg" src="[logo]&geometry=70x&crop=70x70"/></div></p><button class="btn btn-select-marker" data-guid="[id]">Sélectionner</button></div>',
+                    selectedMarkerListTemplate: $('.selected-markers-list ul').html()
+                });
+            });
+        </script>
 
-
-<script type="text/javascript">
-
-    var jsonDatas = {"items":[{"id":"item1","name":"ITEM 1","department":"74","town":"Annecy","lat":45.9203754,"lng":6.1256629730163,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item2","name":"ITEM 2","department":"74","town":"SEYNOD","lat":45.8804816,"lng":6.1024452,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item3","name":"ITEM 3","department":"74","town":"CRUSEILLES","lat":46.0410767,"lng":6.1097486,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item4","name":"ITEM 4","department":"74","town":"CRUSEILLES","lat":46.0265674,"lng":6.1372006,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item5","name":"ITEM 5","department":"73","town":"Chambery","lat":45.5664886,"lng":5.921163,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item6","name":"ITEM 6","department":"74","town":"VETRAZ MONTHOUX","lat":46.1905269,"lng":6.2638828,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item7","name":"ITEM 7","department":"74","town":"Annecy","lat":45.9087768,"lng":6.1291369,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item8","name":"ITEM 8","department":"74","town":"Annemasse","lat":46.1930258,"lng":6.2410076,"address":"Adress ...","tel":"0000...","logo":""},{"id":"item9","name":"ITEM 9","department":"74","town":"VEYRIER DU LAC","lat":45.881707,"lng":6.178,"address":"Adress ...","tel":"0000...","logo":""},{"id":"ITEM 10","name":"ITEM 10","department":"74","town":"ANNECY le VIEUX","lat":45.9248281,"lng":6.1661426000001,"address":"Adress ...","tel":"0000...","logo":""}]};
-
-    jQuery(function($) {
-        $('#container-map-search-1').mapSearch({
-            mapScript: 'https://maps.googleapis.com/maps/api/js?',
-            dataSource: jsonDatas,
-            jsonPrimaryNode: 'items',
-            itemGuid: 'id',
-            initMarkersOnSearch: false,
-            infowindowsMaxWidth: 300,
-            openInfoWindowOnMarkerSelect: false,
-            selectMarkerOnListItemHover: false,
-            boundsVisibleMarkersOnListScroll: true,
-            animateMarkerOnListScroll: false,
-            animateMarkerOnListScrollDelay: 50,
-            mapFitBoundsOnWindowinfoClose: false,
-            displayOnlyVisibleMarkersOnListScroll: false,
-            scrollToSelectedItemOnMarkerSelect: true,
-            keepMarkerSelectedOnListScroll: true,
-            panToSelectedMarker: true,
-            selectItemOnMarkerClick: true,
-            selectMarkerFieldLink: '#select-marker',
-            defaultMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png',
-            visibleMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Chartreuse-icon.png',
-            selectedMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
-            noresultNotification: 'No result for this search criteria',
-            infowindowsTemplate: '<div data-guid="[id]"><h3>[name]</h3><p>[tel]<br class="tel">[town]<br class="town">[address]<div class="logo"><img class="visible-md visible-lg" src="[logo]&geometry=70x&crop=70x70"/></div></p><button class="btn btn-select-marker" data-guid="[id]">Sélectionner</button></div>',
-            selectedMarkerListTemplate: $('.selected-markers-list ul').html()
-        });
-    });
-
-</script>
-
-
-</body>
+    </body>
 </html>
 
