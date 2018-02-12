@@ -2,18 +2,18 @@
 jQuery plugin to search on a Google Map markers list + zoom on list item visible (scrolling effect)
 
 ## Dependencies :
-jQuery			              version: 1.11
-⋅⋅⋅googleapis             version: 3.0
-⋅⋅⋅defiantjs              version: 1.4 (optional - used for native Browser JSON SEARCH)
+jQuery			              version: 1.11<br>
+googleapis             version: 3.0<br>
+defiantjs              version: 1.4 (optional - used for native Browser JSON SEARCH)
 
 ## Custom Events :
-⋅⋅⋅mapSearch:mapIsLoaded (event, plugin, map)
-⋅⋅⋅mapSearch:mapFitBounds (event, plugin, map)
-⋅⋅⋅mapSearch:afterSearch (event, plugin, search)
-⋅⋅⋅mapSearch:afterSetMarkers (event, plugin, map)
-⋅⋅⋅mapSearch:markerSelected (event, plugin, id)
-⋅⋅⋅mapSearch:showMarkerOnMap (event, plugin, id)
-⋅⋅⋅mapSearch:markerAddedOnList (event, plugin, item)
+mapSearch:mapIsLoaded (event, plugin, map)<br>
+mapSearch:mapFitBounds (event, plugin, map)<br>
+mapSearch:afterSearch (event, plugin, search)<br>
+mapSearch:afterSetMarkers (event, plugin, map)<br>
+mapSearch:markerSelected (event, plugin, id)<br>
+mapSearch:showMarkerOnMap (event, plugin, id)<br>
+mapSearch:markerAddedOnList (event, plugin, item)<br>
 
 ## Options : 
 ```javascript
