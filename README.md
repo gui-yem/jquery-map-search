@@ -14,6 +14,8 @@ mapSearch:afterSetMarkers (event, plugin, map)<br>
 mapSearch:markerSelected (event, plugin, id)<br>
 mapSearch:showMarkerOnMap (event, plugin, id)<br>
 mapSearch:markerAddedOnList (event, plugin, item)<br>
+mapSearch:mapDragEnd (event, plugin, map)<br>
+mapSearch:mapZoomChanged (event, plugin, map)<br>
 
 ## Options : 
 ```javascript
