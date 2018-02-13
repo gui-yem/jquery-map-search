@@ -17,6 +17,8 @@
  mapSearch:markerSelected (event, plugin, id)
  mapSearch:showMarkerOnMap (event, plugin, id)
  mapSearch:markerAddedOnList (event, plugin, item)
+ mapSearch:mapDragEnd (event, plugin, map)
+ mapSearch:mapZoomChanged (event, plugin, map)
  */
 
 //Plugin
@@ -796,7 +798,6 @@
          * Map Events
          *
          */
-
         onMapDrag: function () {
             var self = this;
 
