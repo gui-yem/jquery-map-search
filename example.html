@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="fr">
     <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>jQuery Map search demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery Map search demo</title>
 
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-      <link rel="stylesheet" type="text/css" media="screen" href="jquery.map-search.css" />
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="jquery.map-search.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-      <script src="jquery.map-search.js"></script>
+        <script src="jquery.map-search.js"></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -84,6 +84,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="checkbox" name="boundsVisibleListItem" value="1" checked> <label>Zoom on visible item list</label>
+                                <p><a href="https://github.com/gui-yem/jquery-map-search" target="_blank">Download on GitHub</a></p>
                             </div>
                         </div>
                     </div>
@@ -118,9 +119,33 @@
                     visibleMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Chartreuse-icon.png',
                     selectedMarkerIcon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
                     noresultNotification: 'No result for this search criteria',
-                    infowindowsTemplate: '<div data-guid="[id]"><h3>[name]</h3><p>[tel]<br class="tel">[town]<br class="town">[address]<div class="logo"><img class="visible-md visible-lg" src="[logo]&geometry=70x&crop=70x70"/></div></p><button class="btn btn-select-marker" data-guid="[id]">Sélectionner</button></div>',
+                    infowindowsTemplate: '<div data-guid="[id]"><h3>[name]</h3><p>[tel]<br class="tel">[town]<br class="town">[address]<div class="logo"><img class="visible-md visible-lg" src="[logo]"/></div></p><button class="btn btn-select-marker" data-guid="[id]">Sélectionner</button></div>',
                     selectedMarkerListTemplate: $('.selected-markers-list ul').html()
                 });
+
+                // Events Example
+                $('#container-map-search-1').on('mapSearch:mapZoomChanged', function (event, plugin, map) {
+                    mapChange (plugin, map);
+                })
+
+                $('#container-map-search-1').on('mapSearch:mapDragEnd', function (event, plugin, map) {
+                    mapChange (plugin, map);
+                })
+
+                function mapChange (plugin, map) {
+                    // do something...
+                    var bounds = map.getBounds();
+                    var northEast = null;
+                    var southWest = null;
+                    if (bounds !== null) {
+                        northEast = bounds.getNorthEast();
+                        console.log(northEast.lat());
+                        console.log(northEast.lng());
+                        southWest = bounds.getSouthWest();
+                        console.log(southWest.lat());
+                        console.log(southWest.lng());
+                    }
+                }
             });
         </script>
 

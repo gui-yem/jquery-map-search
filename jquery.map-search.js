@@ -197,6 +197,14 @@
                 self.checkZoom();
             });
 
+            google.maps.event.addListener(self.map, "zoom_changed", function() {
+                self.onMapZoom();
+            });
+
+            google.maps.event.addListener(self.map, "dragend", function() {
+                self.onMapDrag();
+            });
+
             self.setMarkers(self.dataSource[self.options.jsonPrimaryNode], true);
             // FIX map.getZoom() undefined on map init
             setTimeout(function(){ self.mapFitBounds(); }, 500);
@@ -415,10 +423,10 @@
         resetSearchFields: function () {
             var self = this;
             $(self.options.mapSearchFieldsContainer + ' :input', self.container)
-              .not(':button, :submit, :reset, :hidden')
-              .val('')
-              .removeAttr('checked')
-              .removeAttr('selected');
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
         },
 
         /*
@@ -785,6 +793,26 @@
 
         /*
          *
+         * Map Events
+         *
+         */
+
+        onMapDrag: function () {
+            var self = this;
+
+            //Custom Event mapDragEnd
+            self.container.trigger('mapSearch:mapDragEnd', [self, self.map]);
+        },
+
+        onMapZoom: function () {
+            var self = this;
+
+            //Custom Event mapZoomChanged
+            self.container.trigger('mapSearch:mapZoomChanged', [self, self.map]);
+        },
+
+        /*
+         *
          * Utils
          *
          */
@@ -825,4 +853,3 @@
     mapSearch.prototype = mapSearchPrototype;
 
 })(jQuery);
-
