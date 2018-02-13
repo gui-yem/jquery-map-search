@@ -6,6 +6,9 @@ jQuery			              version: 1.11<br>
 googleapis             version: 3.0<br>
 defiantjs              version: 1.4 (optional - used for native Browser JSON SEARCH)
 
+## Install :
+Just specify your Googlemap API key
+
 ## Custom Events :
 mapSearch:mapIsLoaded (event, plugin, map)<br>
 mapSearch:mapFitBounds (event, plugin, map)<br>
