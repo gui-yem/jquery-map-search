@@ -137,13 +137,18 @@
                     var bounds = map.getBounds();
                     var northEast = null;
                     var southWest = null;
+                    var center = null;
                     if (bounds !== null) {
                         northEast = bounds.getNorthEast();
-                        console.log(northEast.lat());
-                        console.log(northEast.lng());
+                        console.log('northEast lat : ' + northEast.lat());
+                        console.log('northEast lng : ' + northEast.lng());
                         southWest = bounds.getSouthWest();
-                        console.log(southWest.lat());
-                        console.log(southWest.lng());
+                        console.log('southWest lat : ' + southWest.lat());
+                        console.log('southWest lng : ' + southWest.lng());
+                        center = map.getCenter();
+                        console.log('center lat : ' + center.lat());
+                        console.log('center lng : ' + center.lng());
+                        console.log('zoom : ' + map.getZoom());
                     }
                 }
             });
