@@ -102,13 +102,14 @@
         markerAddedOnList: null,  //Specifies the callback function for Marker added on List - Function CALLBACK
         searchOnFieldsChange: false,  //Specifies if you want to launch the search on fields change - Boolean
         mapIsLoaded: null,  //Specifies the callback function for Map is loaded - Function CALLBACK
+        mapFitBounds: false,  //Specifies if you want to active fitBonds on user action - Boolean
         maxBoundsZoom: null,  //Specifies the maximum level for Map Zoom on Bounds - Integer
         minBoundsZoom: null,  //Specifies the minimum level for Map Zoom on Bounds - Integer
         minBoundsZoomIncreaseLevel: null,  //Specifies an increase level when Map Zoom on Bounds is to the minimum level - Integer
-        scrollToMapTopOnMarkerSelect: true,  //Specifies if you want to scroll to the Map top on Marker select - Boolean
+        scrollToMapTopOnMarkerSelect: false,  //Specifies if you want to scroll to the Map top on Marker select - Boolean
         selectedItemScrollDuration: 300,  //Specifies the duration for list scroll to selected item - Integer
         mapSettings: {
-            scrollwheel: true,
+            scrollwheel: false,
             navigationControl: true,
             mapTypeControl: true,
             scaleControl: true,
@@ -141,6 +142,7 @@
             self.selectedListItem = null;
             self.disableScrollEvent = false;
             self.mouseIsOnList = false;
+            // maxZoom
         },
 
         getInstance: function () {
@@ -155,6 +157,10 @@
         setOption: function (option, value) {
             var self = this;
             self.options[option] = value;
+        },
+
+        getMap: function () {
+            return self.map;
         },
 
         loadDepencies: function () {
@@ -228,11 +234,21 @@
             self.selectMarkerRelease();
         },
 
+        reloadMarkers: function () {
+            var self = this;
+            self.resetAllMarkers(true, self.options.initMarkersOnSearch, false);
+            self.setMarkers(self.dataSource[self.options.jsonPrimaryNode], true);
+        },
+
+        setDatasource: function (dataSource) {
+            var self = this;
+            self.dataSource = dataSource;
+        },
+
         mapFitBounds: function () {
             var self = this;
             self.map.fitBounds(self.bounds);
             self.checkZoom();
-
             //Custom Event mapFitBounds
             self.container.trigger('mapSearch:mapFitBounds', [self, self.map]);
         },
@@ -461,7 +477,8 @@
                 self.resetMarkerListScroll();
             }
 
-            self.mapFitBounds();
+            if (self.options.mapFitBounds)
+                self.mapFitBounds();
 
             //Custom Event afterSetMarkers
             self.container.trigger('mapSearch:afterSetMarkers', [self, self.map]);
@@ -475,7 +492,7 @@
             var self = this;
             var marker = new google.maps.Marker({
                 map: self.map,
-                position: {lat: item.lat, lng: item.lng},
+                position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
                 title: item.name,
                 icon: self.options.defaultMarkerIcon
             });
@@ -552,8 +569,8 @@
             self.markers[id].setZIndex(parseInt(99999));
             self.selectedMarker = id;
 
-            if (self.options.panToSelectedMarker || (self.$boundsVisibleListItemBtn.length && !self.$boundsVisibleListItemBtn.prop('checked')))
-                self.map.panTo(self.markers[id].position);
+           //if (self.options.panToSelectedMarker || (self.$boundsVisibleListItemBtn.length && !self.$boundsVisibleListItemBtn.prop('checked')))
+                //self.map.panTo(self.markers[id].position);
 
             if (self.options.scrollToMapTopOnMarkerSelect)
                 $("body, html").scrollTop(self.containerTop);
@@ -576,7 +593,8 @@
             if (typeof self.infowindows[id] !== 'undefined' )
                 self.infowindows[id].close();
             self.openedInfowindow = null;
-            self.mapFitBounds(self.bounds);
+            if (self.options.mapFitBounds)
+                self.mapFitBounds(self.bounds);
         },
 
         setSelectedMarkerToLinkedField: function (id) {
@@ -633,7 +651,7 @@
             self.infowindows[item[self.itemGuid]] = infowindow;
 
             self.infowindows[item[self.itemGuid]].addListener('closeclick',function() {
-                if (self.options.mapFitBoundsOnWindowinfoClose)
+                if (self.options.mapFitBoundsOnWindowinfoClose && self.options.mapFitBounds)
                     self.mapFitBounds();
             });
         },
@@ -766,7 +784,9 @@
                 if (hideMarkers)
                     self.markers[id].setMap(self.map);
             });
-            self.mapFitBounds();
+
+            if (self.options.mapFitBounds)
+                self.mapFitBounds();
 
             $.each(items, function( index, id ) {
                 var dropDelay = setTimeout( function() {
